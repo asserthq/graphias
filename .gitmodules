@@ -1,0 +1,3 @@
+[submodule "ggraph"]
+	path = ggraph
+	url = https://github.com/pcbje/ggraph.git

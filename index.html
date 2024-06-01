@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body,html, svg, #container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: verdana;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+
+      #controls {
+        position:absolute;
+        top:0;
+        left:0px;
+        padding:4px;
+        border-bottom: 1px solid #ccc;
+        width:100%;
+        font-size: 0.7em;
+      }
+
+      #controls input {
+        font-size:14px
+      }
+
+      #controls input[type="button"],
+      #controls input[type="submit"] {
+        font-size:18px
+      }
+    </style>
+    <link rel="stylesheet" href="ggraph/src/ggraph.css" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="ggraph/src/marker/marker.js"></script>
+
+    <script src="ggraph/ext/simmelian.js"></script>
+    <script src="ggraph/ext/singles.js"></script>
+
+    <script src="ggraph/src/algorithms/ladjust.js"></script>
+    <script src="ggraph/src/algorithms/makecluster.js"></script>
+
+    <script src="ggraph/src/modules/labels.js"></script>
+    <script src="ggraph/src/modules/groups.js"></script>
+    <script src="ggraph/src/modules/nodes.js"></script>
+    <script src="ggraph/src/modules/selection.js"></script>
+
+    <script src="ggraph/src/modules/member_lines.js"></script>
+
+    <script src="ggraph/src/modify/merger.js"></script>
+    <script src="ggraph/src/modify/splitter.js"></script>
+    <script src="ggraph/src/modify/remover.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="ggraph/src/ggraph.js"></script>
+
+    <title>graphias</title>
+  </head>
+  <body>
+    <div id="controls">
+      <input type="radio" name="mode" value="select" checked="checked" id="mode-select" onclick="ggraph.set_mode('select')"> <label for="mode-select">Select</label>
+      &nbsp;
+      <input type="radio" name="mode" value="drag" id="mode-drag" onclick="ggraph.set_mode('drag')"> <label for="mode-drag">Drag</label>
+      |
+      <input type="button" value="Merge" onclick="merge()" />
+      <input type="button" value="Split" onclick="split()" />
+      <input type="button" value="Remove" onclick="remove()" />
+      | <input type="button" value="Group singles" onclick="_singles()" />
+      <input type="button" value="Backbone" onclick="_backbones()" />
+      |
+      <input type="text" placeholder="Comment..." id="comment" />
+      <input type="button" value="Add comment" onclick="_set_comment()" />
+      |
+      Nodes: <span id="node-count">0</span>
+      Edges: <span id="edge-count">0</span>
+      |
+      <input type="button" value="Matrix" onclick="document.getElementById('file-uploader').click()" />
+      <input type='file' id="file-uploader" multiple="" accept=".csv, .txt" style="display: none" />
+
+      <input type="button" value="Draw" onclick="draw_graph()" />
+      <input type="button" value="Clear" onclick="clear_graph()" />
+    </div>
+    <div id="container"></div>
+  </body>
+  <script src="src/app.js"></script>
+</html>
